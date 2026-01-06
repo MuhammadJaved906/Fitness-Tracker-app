@@ -46,7 +46,7 @@ class FitnessTracker {
         const notes = document.getElementById('notes').value;
 
         const exercise = {
-            id: Date.now(),
+            id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             type: exerciseType,
             duration: duration,
             calories: calories,
@@ -125,7 +125,7 @@ class FitnessTracker {
                     ${exercise.notes ? `<div class="exercise-notes">📝 ${exercise.notes}</div>` : ''}
                 </div>
                 <div class="exercise-actions">
-                    <button class="btn btn-delete" onclick="tracker.deleteExercise(${exercise.id})">Delete</button>
+                    <button class="btn btn-delete" onclick="tracker.deleteExercise('${exercise.id}')">Delete</button>
                 </div>
             </div>
         `).join('');
@@ -194,8 +194,13 @@ class FitnessTracker {
     }
 
     loadExercises() {
-        const stored = localStorage.getItem('fitnessExercises');
-        return stored ? JSON.parse(stored) : [];
+        try {
+            const stored = localStorage.getItem('fitnessExercises');
+            return stored ? JSON.parse(stored) : [];
+        } catch (error) {
+            console.error('Error loading exercises from localStorage:', error);
+            return [];
+        }
     }
 
     saveExercises() {
