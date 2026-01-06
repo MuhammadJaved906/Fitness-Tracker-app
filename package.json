@@ -1,0 +1,17 @@
+{
+  "name": "fitness-tracker-app",
+  "version": "1.0.0",
+  "description": "A Fitness Tracker App for tracking fitness and exercises",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8080"
+  },
+  "keywords": [
+    "fitness",
+    "tracker",
+    "exercise",
+    "workout"
+  ],
+  "author": "Muhammad Javed",
+  "license": "MIT"
+}
